@@ -1,0 +1,63 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../paper-slider/paper-slider.html">
+<link rel="import" href="../../paper-checkbox/paper-checkbox.html">
+<link rel="import" href="../../paper-input/paper-input.html">
+<link rel="import" href="../../paper-material/paper-material.html">
+<link rel="import" href="../../paper-menu/paper-menu.html">
+<link rel="import" href="../../paper-item/paper-item.html">
+<link rel="import" href="../../paper-button/paper-button.html">
+<link rel="import" href="../../paper-tabs/paper-tabs.html">
+<link rel="import" href="../../paper-dropdown-menu/paper-dropdown-menu.html">
+
+<!--
+	Element for displaying control elements.
+
+	Example:
+		<polymer-controls id="chart"></polymer-controls>
+
+	@element polymer-controls
+	@status unstable
+-->
+
+<dom-module id="polymer-controls">
+
+	<!-- STYLESHEETS -->
+	<link rel="import" type="css" href="./css/controls.css">
+
+	<!-- PRESENTATION CONTENT -->
+	<template>
+		<paper-material class="manipulate" id="manipulate" elevation="2">
+			<h1>Controls:</h1>
+			<div id="controlElems">
+				<template is="dom-repeat" items="{{manipulate}}">
+					<div class="controlElem">
+						<template is="dom-if" if="[[_isSliderControl( item )]]">
+							<div>{{item.name}}</div>
+							<paper-slider class="slider" step="[[_computeDefaultStep(item)]]" min="{{item.min}}" max="{{item.max}}" value="{{item.value}}"
+							editable="true" on-change="onSliderChange"></paper-slider>
+						</template>
+						<template is="dom-if" if="[[_isCheckboxControl( item )]]">
+								<paper-checkbox class="checkboxElem" on-change="onCheckboxChange" checked="{{item.value}}">{{item.name}}</paper-checkbox>
+						</template>
+						<template is="dom-if" if="[[_isDropdownControl( item )]]">
+							<paper-dropdown-menu selected="{{item.value}}" label="{{item.name}}" on-iron-activate="onDropdownClose">
+								<paper-menu class="dropdown-content">
+									<template is="dom-repeat" items="[[item.choices]]" as="choice">
+										<paper-item>{{choice}}</paper-item>
+									</template>
+								</paper-menu>
+							</paper-dropdown-menu>
+						</template>
+						<template is="dom-if" if="[[_isInputField( item )]]">
+							<paper-input on-value-changed="onInputChange" label="{{item.name}}" value="{{item.value}}"></paper-input>
+						</template>
+					</div>
+				</template>
+			</div>
+		</paper-material>
+	</template>
+
+	<!-- REGISTRATION -->
+	<script src="./js/script.js"></script>
+
+</dom-module>
