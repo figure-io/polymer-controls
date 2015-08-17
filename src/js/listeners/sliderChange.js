@@ -7,7 +7,7 @@
 * @param {Event} evt - event object
 * @returns {Boolean} true
 */
-	function onSliderChange( evt ) {
+function onSliderChange( evt ) {
 	/* jshint validthis:true */
 	var model, item;
 
@@ -15,7 +15,7 @@
 	item = model.item;
 
 	// Set parameter
-	this.element[ item.name ] = item.value;
+	this._controls[ item.name ] = item.value;
 
 	return true;
 } // end FUNCTION onSliderChange()

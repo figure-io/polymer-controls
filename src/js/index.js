@@ -14,15 +14,8 @@ element.is = require( './name' );
 
 element.properties = require( './properties' );
 
-// MULTI-PROPERTY AND ARRAY OBSERVERS //
-
-element.observers = [
-	'_manipulateChanged(manipulate.splices)'
-];
-
 
 // LIFECYCLE //
-
 
 element.created = require( './lifecycle/created.js' );
 
@@ -37,6 +30,7 @@ element.detached = require( './lifecycle/detached.js' );
 
 element._init = require( './init' );
 
+
 // LISTENERS //
 
 element.onInputChange = require( './listeners/inputChange.js' );
@@ -47,31 +41,37 @@ element.onDropdownClose = require( './listeners/dropdownClose.js' );
 
 element.onCheckboxChange = require( './listeners/checkboxChange.js' );
 
+
 // OBSERVERS //
 
-element._manipulateChanged = require( './observers/manipulate.js' );
+element._configChanged = require( './observers/config.js' );
+
+element.observers = [
+	'_configChanged(config.splices)'
+];
+
 
 // UTILS //
 
-element._isSliderControl = require( './utils/isSliderControl.js' );
-
-element._isCheckboxControl = require( './utils/isCheckboxControl.js' );
-
-element._isDropdownControl = require( './utils/isDropdownControl.js' );
-
-element._isInputField = require( './utils/isInputField.js' );
-
 element._computeDefaultStep = require( './utils/computeDefaultStep.js' );
 
-// PUBLIC CONTROL METHODS //
+element._isSlider = require( './utils/isSlider.js' );
 
-element.addControl = require( './manipulate/addControl.js' );
+element._isCheckbox = require( './utils/isCheckbox.js' );
 
-element.removeControl = require( './manipulate/removeControl.js' );
+element._isDropdown = require( './utils/isDropdown.js' );
 
-element.addControls = require( './manipulate/addControls' );
+element._isInput = require( './utils/isInput.js' );
 
-element.resetControls = require( './manipulate/resetControls.js' );
+
+// PUBLIC API //
+
+element.add = require( './api/add.js' );
+
+element.remove = require( './api/remove.js' );
+
+element.reset = require( './api/reset.js' );
+
 
 // EXPORTS //
 

@@ -6,6 +6,8 @@
 */
 function detached() {
 	/* jshint validthis:true */
+
+	// TODO: remove default listeners. See `timeseries`.
 } // end FUNCTION detached()
 
 

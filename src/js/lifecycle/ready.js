@@ -6,6 +6,7 @@
 */
 function ready() {
 	/* jshint validthis:true */
+	this._init();
 } // end FUNCTION ready()
 
 

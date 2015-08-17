@@ -18,7 +18,7 @@ function onDropdownClose( evt ) {
 	item = model.item;
 
 	// [0] Set parameter
-	this.element[ item.name ] = item.choices[ detail.selected ];
+	this._controls[ item.name ] = item.choices[ detail.selected ];
 
 	return true;
 } // end FUNCTION onDropdownClose()

@@ -6,6 +6,8 @@
 */
 function created() {
 	/* jshint validthis:true */
+
+	// TODO: add default listeners. See `timeseries`.
 } // end FUNCTION created()
 
 

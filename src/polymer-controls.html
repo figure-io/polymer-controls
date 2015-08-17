@@ -13,33 +13,42 @@
 	Element for displaying control elements.
 
 	Example:
-		<polymer-controls id="chart"></polymer-controls>
+		<polymer-controls id="controls"></polymer-controls>
 
 	@element polymer-controls
 	@status unstable
 -->
-
 <dom-module id="polymer-controls">
 
 	<!-- STYLESHEETS -->
-	<link rel="import" type="css" href="./css/controls.css">
+	<link rel="import" type="css" href="./css/styles.css">
 
 	<!-- PRESENTATION CONTENT -->
 	<template>
-		<paper-material class="manipulate" id="manipulate" elevation="2">
-			<h1>Controls:</h1>
-			<div id="controlElems">
-				<template is="dom-repeat" items="{{manipulate}}">
-					<div class="controlElem">
-						<template is="dom-if" if="[[_isSliderControl( item )]]">
+		<!-- TODO: consider remove paper elements -->
+		<paper-material class="container" id="container" elevation="2">
+
+			<!-- TODO: why is the controls DIV necessary? -->
+			<div class="controls">
+				<template is="dom-repeat" items="{{config}}">
+
+					<!-- TODO: why is the elements DIV necessary? -->
+					<div class="control">
+
+						<!-- Slider -->
+						<template is="dom-if" if="[[_isSlider( item )]]">
 							<div>{{item.name}}</div>
 							<paper-slider class="slider" step="[[_computeDefaultStep(item)]]" min="{{item.min}}" max="{{item.max}}" value="{{item.value}}"
 							editable="true" on-change="onSliderChange"></paper-slider>
 						</template>
-						<template is="dom-if" if="[[_isCheckboxControl( item )]]">
+
+						<!-- Checkbox -->
+						<template is="dom-if" if="[[_isCheckbox( item )]]">
 								<paper-checkbox class="checkboxElem" on-change="onCheckboxChange" checked="{{item.value}}">{{item.name}}</paper-checkbox>
 						</template>
-						<template is="dom-if" if="[[_isDropdownControl( item )]]">
+
+						<!-- Dropdown -->
+						<template is="dom-if" if="[[_isDropdown( item )]]">
 							<paper-dropdown-menu selected="{{item.value}}" label="{{item.name}}" on-iron-activate="onDropdownClose">
 								<paper-menu class="dropdown-content">
 									<template is="dom-repeat" items="[[item.choices]]" as="choice">
@@ -48,9 +57,12 @@
 								</paper-menu>
 							</paper-dropdown-menu>
 						</template>
-						<template is="dom-if" if="[[_isInputField( item )]]">
+
+						<!-- Input Field -->
+						<template is="dom-if" if="[[_isInput( item )]]">
 							<paper-input on-value-changed="onInputChange" label="{{item.name}}" value="{{item.value}}"></paper-input>
 						</template>
+
 					</div>
 				</template>
 			</div>

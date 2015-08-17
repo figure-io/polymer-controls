@@ -13,21 +13,22 @@ var isNumber = require( 'validate.io-number-primitive' );
 *
 */
 function computeDefaultStep( item ) {
-	var step,
-		range,
+	/* jshint validthis:true */
+	var range,
+		step,
 		err;
 
 	if ( item.step ) {
-		if ( !isNumber( item.step ) ) {
-			err = new TypeError( 'Step property must be a number primitive.' );
-			throw( err );
-		}
 		step = item.step;
+		if ( !isNumber( step ) ) {
+			err = new TypeError( 'invalid input argument. Step property must be a number primitive. Value: `' + step + '`.' );
+			this.fire( 'err', err );
+			return;
+		}
 	} else {
 		range = item.max - item.min;
 		step = Math.round( range / 20 );
 	}
-
 	return step;
 } // end FUNCTION computeDefaultStep()
 

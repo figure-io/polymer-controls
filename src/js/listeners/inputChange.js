@@ -15,7 +15,7 @@ function onInputChange( evt ) {
 	item = model._config.item;
 
 	// Set parameter
-	this.element[ item.name ] = item.value;
+	this._controls[ item.name ] = item.value;
 
 	return true;
 } // end FUNCTION onInputChange()

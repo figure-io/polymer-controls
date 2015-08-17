@@ -1,16 +1,16 @@
-.manipulate {
+.container {
 	display: none;
 	width: 40%;
 	padding: 2%;
 }
 
-#controlElems {
+.controls {
 	width: 100%;
 	font-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
 	font-size: 14px;
 }
 
-.controlElem {
+.control {
 	display: block;
 	clear: both;
 	margin: 5px;
