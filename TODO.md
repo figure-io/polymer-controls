@@ -21,7 +21,8 @@ TODO
 4. each control should have its own defined schema describing the required and optional properties
 	-	anytime a configuration is provided for a particular control, the configuration should be validated against the schema
 	-	for an example schema, see the schema and associated validator for `matrix-diagram`
-5. 
+5. for adding controls, maybe make the `add` method polymorphic, allowing both a single object or an object array.
+6. 
 
 
 ### Notes
