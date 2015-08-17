@@ -24,7 +24,8 @@ TODO
 5. for adding controls, maybe make the `add` method polymorphic, allowing both a single object or an object array.
 6. I am not sure `width` and `height` attributes are needed.
 	- 	for figures, these are provided, as SVG elements must have their dimensions explicitly set using pixels
-7. 
+7. we need to improve the demo
+8. 
 
 
 ### Notes
