@@ -22,7 +22,9 @@ TODO
 	-	anytime a configuration is provided for a particular control, the configuration should be validated against the schema
 	-	for an example schema, see the schema and associated validator for `matrix-diagram`
 5. for adding controls, maybe make the `add` method polymorphic, allowing both a single object or an object array.
-6. 
+6. I am not sure `width` and `height` attributes are needed.
+	- 	for figures, these are provided, as SVG elements must have their dimensions explicitly set using pixels
+7. 
 
 
 ### Notes
@@ -37,5 +39,7 @@ TODO
 2. Add media query styles
 3. move away from material components where possible
 	-	do take inspiration from how material does theming
-4. 
+4. should elements be placed on a grid?
+	-	this would allow alignment, rather than just a list
+5. 
 
