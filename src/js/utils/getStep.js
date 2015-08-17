@@ -8,11 +8,11 @@ var isNumber = require( 'validate.io-number-primitive' );
 // DEFAULT STEP SIZE //
 
 /**
-* FUNCTION computeDefaultStep( item )
-*	Computes the default step size for the slider element.
+* FUNCTION getStep( item )
+*	Returns the default step size for the slider element.
 *
 */
-function computeDefaultStep( item ) {
+function getStep( item ) {
 	/* jshint validthis:true */
 	var range,
 		step,
@@ -30,9 +30,9 @@ function computeDefaultStep( item ) {
 		step = Math.round( range / 20 );
 	}
 	return step;
-} // end FUNCTION computeDefaultStep()
+} // end FUNCTION getStep()
 
 
 // EXPORTS //
 
-module.exports = computeDefaultStep;
+module.exports = getStep;
