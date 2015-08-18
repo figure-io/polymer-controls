@@ -9,14 +9,12 @@
 */
 function onCheckboxChange( evt ) {
 	/* jshint validthis:true */
-	var model, item;
-
-	model = evt.model;
-	item = model.item;
-
-	// Set parameter
+	var item = evt.model.item;
 	this._controls[ item.name ] = item.value;
-
+	this.fire( 'change', {
+		'cid': evt.target.cid,
+		'value': item.value
+	});
 	return true;
 } // end FUNCTION onCheckboxChange()
 

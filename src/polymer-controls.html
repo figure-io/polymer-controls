@@ -38,18 +38,18 @@
 						<!-- Slider -->
 						<template is="dom-if" if="[[_isSlider( item )]]">
 							<div>{{item.name}}</div>
-							<paper-slider class="slider" step="[[_computeDefaultStep(item)]]" min="{{item.min}}" max="{{item.max}}" value="{{item.value}}"
+							<paper-slider class="slider" step="[[_computeDefaultStep(item)]]" min="{{item.min}}" max="{{item.max}}" value="{{item.value}}" cid="{{item.id}}"
 							editable="true" on-change="onSliderChange"></paper-slider>
 						</template>
 
 						<!-- Checkbox -->
 						<template is="dom-if" if="[[_isCheckbox( item )]]">
-								<paper-checkbox class="checkboxElem" on-change="onCheckboxChange" checked="{{item.value}}">{{item.name}}</paper-checkbox>
+								<paper-checkbox class="checkboxElem" cid="{{item.id}}" on-change="onCheckboxChange" checked="{{item.value}}">{{item.name}}</paper-checkbox>
 						</template>
 
 						<!-- Dropdown -->
 						<template is="dom-if" if="[[_isDropdown( item )]]">
-							<paper-dropdown-menu selected="{{item.value}}" label="{{item.name}}" on-iron-activate="onDropdownClose">
+							<paper-dropdown-menu selected="{{item.value}}" label="{{item.name}}" cid="{{item.id}}" on-iron-activate="onDropdownClose">
 								<paper-menu class="dropdown-content">
 									<template is="dom-repeat" items="[[item.choices]]" as="choice">
 										<paper-item>{{choice}}</paper-item>
@@ -60,7 +60,7 @@
 
 						<!-- Input Field -->
 						<template is="dom-if" if="[[_isInput( item )]]">
-							<paper-input on-value-changed="onInputChange" label="{{item.name}}" value="{{item.value}}"></paper-input>
+							<paper-input on-value-changed="onInputChange" label="{{item.name}}" value="{{item.value}}" cid="{{item.id}}"></paper-input>
 						</template>
 
 					</div>

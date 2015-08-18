@@ -17,8 +17,12 @@ function onDropdownClose( evt ) {
 	model = evt.model;
 	item = model.item;
 
-	// [0] Set parameter
 	this._controls[ item.name ] = item.choices[ detail.selected ];
+
+	this.fire( 'change', {
+		'cid': evt.target.cid,
+		'value': detail.selected
+	});
 
 	return true;
 } // end FUNCTION onDropdownClose()

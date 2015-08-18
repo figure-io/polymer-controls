@@ -25,7 +25,8 @@ TODO
 6. I am not sure `width` and `height` attributes are needed.
 	- 	for figures, these are provided, as SVG elements must have their dimensions explicitly set using pixels
 7. we need to improve the demo
-8. 
+8. slider clbk should be bracketed / rate-limited
+9. 
 
 
 ### Notes
