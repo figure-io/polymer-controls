@@ -53,7 +53,7 @@ element.observers = [
 
 // UTILS //
 
-element._computeDefaultStep = require( './utils/computeDefaultStep.js' );
+element._getStep = require( './utils/getStep.js' );
 
 element._isSlider = require( './utils/isSlider.js' );
 

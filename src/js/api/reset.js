@@ -2,7 +2,7 @@
 
 /**
 * FUNCTION reset()
-*	Removes all control elements from the current plot.
+*	Removes all control elements.
 *
 */
 function reset() {

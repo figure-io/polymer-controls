@@ -3,20 +3,17 @@
 // MODULES //
 
 var isArray = require( 'validate.io-array' ),
-	isBooleanArray = require( 'validate.io-boolean-primitive-array' ),
 	isObject = require( 'validate.io-object' );
 
 
-// ADD CONTROL //
-
 /**
-* FUNCTION add( config )
-*	Adds a control element as specified by `config`.
+* FUNCTION addOne( config )
+*	Adds a single control element as specified by `config`.
 *
+* @private
 * @param {Object} config - configuration object for control element
-* @returns {Object} context
 */
-function add( config ) {
+function addOne( config ) {
 	/* jshint validthis:true */
 	var err,
 		i;
@@ -78,6 +75,37 @@ function add( config ) {
 		this.push( 'config', config );
 		return;
 	}
+
+} // end FUNCTION addOne()
+
+
+// ADD CONTROL //
+
+/**
+* FUNCTION add( configs )
+*	Adds control elements as specified by `configs`.
+*
+* @param {Array|Object} configs - array of configuration objects / single configuration object for control element
+* @returns {Object} context
+*/
+function add( configs ) {
+	/* jshint validthis:true */
+	var err,
+		len,
+		i;
+
+	if ( isArray( configs ) ) {
+		len = configs.length;
+		for ( i = 0; i < len; i++ ) {
+			addOne.call( this, configs[ i ] );
+		}
+	} else if ( isObject( configs ) ) {
+		addOne.call( this, configs );
+	} else {
+		err = new TypeError( 'invalid input argument. Must provide an array or object. Value: `' + configs + '`' );
+		this.fire( 'err', err );
+	}
+
 	return this;
 } // end FUNCTION add()
 
