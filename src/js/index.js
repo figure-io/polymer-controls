@@ -53,16 +53,21 @@ element.observers = [
 
 // UTILS //
 
+element._getId = require( './utils/getId.js' );
+
 element._getStep = require( './utils/getStep.js' );
 
-element._isSlider = require( './utils/isSlider.js' );
+element._hasDescription = require( './utils/hasDescription.js' );
 
 element._isCheckbox = require( './utils/isCheckbox.js' );
+
+element._isColorpicker = require( './utils/isColorpicker.js' );
 
 element._isDropdown = require( './utils/isDropdown.js' );
 
 element._isInput = require( './utils/isInput.js' );
 
+element._isSlider = require( './utils/isSlider.js' );
 
 // PUBLIC API //
 

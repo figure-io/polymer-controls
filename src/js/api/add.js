@@ -3,8 +3,11 @@
 // MODULES //
 
 var isArray = require( 'validate.io-array' ),
-	isObject = require( 'validate.io-object' );
+	isObject = require( 'validate.io-object' ),
+	validate = require( 'controls-spec' );
 
+
+// ADD ONE //
 
 /**
 * FUNCTION addOne( config )
@@ -23,8 +26,10 @@ function addOne( config ) {
 		this.fire( 'err', err );
 		return;
 	}
-	if ( !config.hasOwnProperty( 'name' ) ) {
-		err = new Error( 'invalid input argument. Provided configuration object must have a `name` property. Value: `' + config + '`.' );
+
+	// Check whether config element adheres to the schema...
+	if ( validate( config) === false ) {
+		err = new Error( 'invalid input argument. Schema validation was unsuccessful. Value: `' + validate.errors + '`.' );
 		this.fire( 'err', err );
 		return;
 	}
@@ -36,46 +41,28 @@ function addOne( config ) {
 			return;
 		}
 	}
-	// Control element should be a slider:
-	if ( config.type === 'slider' ) {
-		// Set default value if not set by user
-		if ( !config.value ) {
-			config.value = ( config.max - config.min ) / 2;
-		}
-		this.push( 'config', config );
-		return;
+
+	// Set default config properties
+	switch ( config.type ) {
+		case 'slider':
+			if ( !config.value ) {
+				config.value = ( config.max - config.min ) / 2;
+			}
+		break;
+		case 'checkbox':
+			if ( !config.value ) {
+				config.value = false;
+			}
+		break;
+		case 'dropdown':
+			if ( !config.value ) {
+				config.value = 0;
+			}
+		break;
 	}
 
-	// Control element should be a checkbox
-	if ( config.type === 'checkbox' ) {
-		if ( !config.value ) {
-			config.value = config.choices[ 0 ];
-		}
-		this.push( 'config', config );
-		return;
-	}
-
-	// Control element should be a dropdown menu:
-	if ( config.type === 'dropdown' ) {
-		if ( !isArray( config.choices ) ) {
-			err = new Error( 'invalid input argument. For dropdown elements, the `choices` option must be an array. Value: `' + config + '`.' );
-			this.fire( 'err', err );
-			return;
-		}
-		// Set default value if not set by user
-		if ( !config.value ) {
-			config.value = 0;
-		}
-		this.push( 'config', config );
-		return;
-	}
-
-	// Control element should be an input field:
-	if ( config.type === 'input' ) {
-		this.push( 'config', config );
-		return;
-	}
-
+	this.push( 'config', config );
+	return;
 } // end FUNCTION addOne()
 
 
@@ -108,6 +95,7 @@ function add( configs ) {
 
 	return this;
 } // end FUNCTION add()
+
 
 // EXPORTS //
 
