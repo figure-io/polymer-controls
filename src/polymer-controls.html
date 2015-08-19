@@ -8,6 +8,7 @@
 <link rel="import" href="../../paper-button/paper-button.html">
 <link rel="import" href="../../paper-tabs/paper-tabs.html">
 <link rel="import" href="../../paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../paper-tooltip/paper-tooltip.html">
 
 <!--
 	Element for displaying control elements.
@@ -33,12 +34,11 @@
 				<template is="dom-repeat" items="{{config}}">
 
 					<!-- TODO: why is the elements DIV necessary? -->
-					<div class="control">
-
+					<div id="[[_getId( index )]]" class="control">
 						<!-- Slider -->
 						<template is="dom-if" if="[[_isSlider( item )]]">
-							<div>{{item.name}}</div>
-							<paper-slider class="slider" step="[[_computeDefaultStep(item)]]" min="{{item.min}}" max="{{item.max}}" value="{{item.value}}" cid="{{item.id}}"
+							<span>{{item.name}}</span>
+							<paper-slider class="slider" cid="{{item.id}}" step="[[_getStep(item)]]" min="{{item.min}}" max="{{item.max}}" value="{{item.value}}"
 							editable="true" on-change="onSliderChange"></paper-slider>
 						</template>
 
@@ -60,7 +60,18 @@
 
 						<!-- Input Field -->
 						<template is="dom-if" if="[[_isInput( item )]]">
-							<paper-input on-value-changed="onInputChange" label="{{item.name}}" value="{{item.value}}" cid="{{item.id}}"></paper-input>
+							<paper-input on-value-changed="onInputChange" label="{{item.name}}" cid="{{item.id}}" value="{{item.value}}"></paper-input>
+						</template>
+
+						<!-- Color Picker -->
+						<template is="dom-if" if="[[_isColorpicker( item )]]">
+							<span>{{item.name}}</span>
+							<input type="color" cid="{{item.id}}" value="{{item.value}}">
+						</template>
+
+						<!-- Attach tooltip if description is present -->
+						<template is="dom-if" if="[[_hasDescription( item )]]">
+							<paper-tooltip for="[[_getId( index )]">{{item.description}}</paper-tooltip>
 						</template>
 
 					</div>
