@@ -17259,17 +17259,17 @@ paper-tabs {
 						
 						<template is="dom-if" if="[[_isSlider( item )]]">
 							<div>{{item.name}}</div>
-							<paper-slider class="slider" step="[[_computeDefaultStep(item)]]" min="{{item.min}}" max="{{item.max}}" value="{{item.value}}" editable="true" on-change="onSliderChange"></paper-slider>
+							<paper-slider class="slider" step="[[_computeDefaultStep(item)]]" min="{{item.min}}" max="{{item.max}}" value="{{item.value}}" cid="{{item.id}}" editable="true" on-change="onSliderChange"></paper-slider>
 						</template>
 
 						
 						<template is="dom-if" if="[[_isCheckbox( item )]]">
-								<paper-checkbox class="checkboxElem" on-change="onCheckboxChange" checked="{{item.value}}">{{item.name}}</paper-checkbox>
+								<paper-checkbox class="checkboxElem" cid="{{item.id}}" on-change="onCheckboxChange" checked="{{item.value}}">{{item.name}}</paper-checkbox>
 						</template>
 
 						
 						<template is="dom-if" if="[[_isDropdown( item )]]">
-							<paper-dropdown-menu selected="{{item.value}}" label="{{item.name}}" on-iron-activate="onDropdownClose">
+							<paper-dropdown-menu selected="{{item.value}}" label="{{item.name}}" cid="{{item.id}}" on-iron-activate="onDropdownClose">
 								<paper-menu class="dropdown-content">
 									<template is="dom-repeat" items="[[item.choices]]" as="choice">
 										<paper-item>{{choice}}</paper-item>
@@ -17280,7 +17280,7 @@ paper-tabs {
 
 						
 						<template is="dom-if" if="[[_isInput( item )]]">
-							<paper-input on-value-changed="onInputChange" label="{{item.name}}" value="{{item.value}}"></paper-input>
+							<paper-input on-value-changed="onInputChange" label="{{item.name}}" value="{{item.value}}" cid="{{item.id}}"></paper-input>
 						</template>
 
 					</div>
@@ -17616,14 +17616,12 @@ module.exports = ready;
 */
 function onCheckboxChange( evt ) {
 	/* jshint validthis:true */
-	var model, item;
-
-	model = evt.model;
-	item = model.item;
-
-	// Set parameter
+	var item = evt.model.item;
 	this._controls[ item.name ] = item.value;
-
+	this.fire( 'change', {
+		'cid': evt.target.cid,
+		'value': item.value
+	});
 	return true;
 } // end FUNCTION onCheckboxChange()
 
@@ -17652,8 +17650,12 @@ function onDropdownClose( evt ) {
 	model = evt.model;
 	item = model.item;
 
-	// [0] Set parameter
 	this._controls[ item.name ] = item.choices[ detail.selected ];
+
+	this.fire( 'change', {
+		'cid': evt.target.cid,
+		'value': detail.selected
+	});
 
 	return true;
 } // end FUNCTION onDropdownClose()
@@ -17680,8 +17682,12 @@ function onInputChange( evt ) {
 	model = evt.model;
 	item = model._config.item;
 
-	// Set parameter
 	this._controls[ item.name ] = item.value;
+
+	this.fire( 'change', {
+		'cid': evt.target.cid,
+		'value': item.value
+	});
 
 	return true;
 } // end FUNCTION onInputChange()
@@ -17708,8 +17714,12 @@ function onSliderChange( evt ) {
 	model = evt.model;
 	item = model.item;
 
-	// Set parameter
 	this._controls[ item.name ] = item.value;
+
+	this.fire( 'change', {
+		'cid': evt.target.cid,
+		'value': item.value
+	});
 
 	return true;
 } // end FUNCTION onSliderChange()
@@ -17787,30 +17797,6 @@ Polymer( require( './' ) );
 // PROPERTIES //
 
 var props = {};
-
-/**
-* Element width. If not explicitly set, defaults to the width of the parent node.
-*
-* @type {Number}
-* @default null
-*/
-props.width = {
-	'observer': '_widthChanged',
-	'type': Number,
-	'value': null
-};
-
-/**
-* Element height. If not explicitly set, defaults to the height of the parent node.
-*
-* @type {Number}
-* @default null
-*/
-props.height = {
-	'observer': '_heightChanged',
-	'type': Number,
-	'value': null
-};
 
 /**
 * Controls configuration.
