@@ -9,9 +9,9 @@
 */
 function onDropdownClose( evt ) {
 	/* jshint validthis:true */
-	var detail,
-		model,
-		item;
+	var detail;
+	var model;
+	var item;
 
 	detail = evt.detail;
 	model = evt.model;

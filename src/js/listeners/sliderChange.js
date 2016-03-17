@@ -9,7 +9,8 @@
 */
 function onSliderChange( evt ) {
 	/* jshint validthis:true */
-	var model, item;
+	var model;
+	var item;
 
 	model = evt.model;
 	item = model.item;

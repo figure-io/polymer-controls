@@ -14,9 +14,9 @@ var isNumber = require( 'validate.io-number-primitive' );
 */
 function getStep( item ) {
 	/* jshint validthis:true */
-	var range,
-		step,
-		err;
+	var range;
+	var step;
+	var err;
 
 	if ( item.step ) {
 		step = item.step;

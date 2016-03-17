@@ -69,6 +69,7 @@ element._isInput = require( './utils/isInput.js' );
 
 element._isSlider = require( './utils/isSlider.js' );
 
+
 // PUBLIC API //
 
 element.add = require( './api/add.js' );

@@ -2,9 +2,9 @@
 
 // MODULES //
 
-var isArray = require( 'validate.io-array' ),
-	isObject = require( 'validate.io-object' ),
-	validate = require( 'controls-spec' );
+var isArray = require( 'validate.io-array' );
+var isObject = require( 'validate.io-object' );
+var validate = require( 'controls-spec' );
 
 
 // ADD ONE //
@@ -18,8 +18,8 @@ var isArray = require( 'validate.io-array' ),
 */
 function addOne( config ) {
 	/* jshint validthis:true */
-	var err,
-		i;
+	var err;
+	var i;
 
 	if ( !isObject( config ) ) {
 		err = new TypeError( 'invalid input argument. Must provide an object. Value: `' + config + '`' );
@@ -28,7 +28,7 @@ function addOne( config ) {
 	}
 
 	// Check whether config element adheres to the schema...
-	if ( validate( config) === false ) {
+	if ( validate( config ) === false ) {
 		err = new Error( 'invalid input argument. Schema validation was unsuccessful. Value: `' + validate.errors + '`.' );
 		this.fire( 'err', err );
 		return;
@@ -77,9 +77,9 @@ function addOne( config ) {
 */
 function add( configs ) {
 	/* jshint validthis:true */
-	var err,
-		len,
-		i;
+	var err;
+	var len;
+	var i;
 
 	if ( isArray( configs ) ) {
 		len = configs.length;
