@@ -17,13 +17,13 @@ TODO
 		...
 	]
 	```~~
-3. Rather than a control having a `name`, a control should be assigned an `id`. This `id` should still be externally assigned. Basically, change the property from `name` to `id`.
+3. ~~Rather than a control having a `name`, a control should be assigned an `id`. This `id` should still be externally assigned. Basically, change the property from `name` to `id`.~~
 4. each control should have its own defined schema describing the required and optional properties
 	-	anytime a configuration is provided for a particular control, the configuration should be validated against the schema
 	-	for an example schema, see the schema and associated validator for `matrix-diagram`
 5. ~~for adding controls, maybe make the `add` method polymorphic, allowing both a single object or an object array.~~
-6. I am not sure `width` and `height` attributes are needed.
-	- 	for figures, these are provided, as SVG elements must have their dimensions explicitly set using pixels
+6. ~~I am not sure `width` and `height` attributes are needed.~~
+	- 	~~for figures, these are provided, as SVG elements must have their dimensions explicitly set using pixels~~
 7. we need to improve the demo
 8. slider clbk should be bracketed / rate-limited
 9.
