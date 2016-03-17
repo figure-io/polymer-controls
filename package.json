@@ -59,7 +59,7 @@
   },
   "devDependencies": {
     "bower": "^1.4.1",
-    "browserify": "^10.2.4",
+    "browserify": "13.x.x",
     "chai": "3.x.x",
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.15",
